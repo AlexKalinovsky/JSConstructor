@@ -110,7 +110,7 @@ function drowRectangle() {
     $.each(arrayContainerOBJ, function(key, value) {
         //проверка наличия уже отривосанных объектов
         if ($('#recObject-' + key + '').length <= 0) {
-            $(".main-screen").append('<div data-id-rect="' + key + '" id="' + value.div_id + '" class="obj_container' + value.div_class + '" style="width: ' + value.width + 'px; height: ' + value.height + 'px;"></div>');
+            $(".main-screen").append('<div data-id="' + key + '" id="' + value.div_id + '" class="obj_container' + value.div_class + '" style="width: ' + value.width + 'px; height: ' + value.height + 'px;"></div>');
             $("#" + value.div_id).css("left", value.pos_x).css("top", value.pos_y);
             //Внутр структура
             //Отрисовать внутренную структуру объекта 
@@ -169,7 +169,7 @@ function drowEditList(id) {
     $('.edit-list__delite').on('click', function(){
         $(this).parent().remove();
         $('.editable > [data-id-sub-rect=' + $(this).parent().attr('data-edit-id') + ']').remove();
-        delete arrayContainerOBJ[$('.editable').attr('data-id-rect')].local_rectangles[$(this).parent().attr('data-edit-id')];
+        delete arrayContainerOBJ[$('.editable').attr('data-id')].local_rectangles[$(this).parent().attr('data-edit-id')];
     });
 }
 
@@ -185,7 +185,7 @@ function buttonEdit() {
 }
 function Editor(){
     $('.toolbar-blocks').hide();
-    console.log();
+    console.log(this);
         $('.toolbar-edit').show();
         drowEditList($(this).attr('data-id'));
         $('#recObject-' + $(this).attr('data-id')).addClass('editable');
@@ -198,9 +198,9 @@ function Editor(){
 }
 //кнопка Добавить блок в тулбаре редактирования внутренних блоков
 $('#toolbar-edit-add').on("click", function() {
-    pushSubArray($('.editable').attr('data-id-rect'));
-    drowEditList($('.editable').attr('data-id-rect'));
-    var editDrowSR = drowSubRectangle.bind(arrayContainerOBJ[$('.editable').attr('data-id-rect')]);
+    pushSubArray($('.editable').attr('data-id'));
+    drowEditList($('.editable').attr('data-id'));
+    var editDrowSR = drowSubRectangle.bind(arrayContainerOBJ[$('.editable').attr('data-id')]);
     editDrowSR();
 
     $('.local_rectangle').draggable({
@@ -212,10 +212,10 @@ $('#toolbar-edit-add').on("click", function() {
 $('#toolbar-edit-save').on("click", function() {
     $('.editable').children('.local_rectangle').each(function(i, item) {
         
-        arrayContainerOBJ[$('.editable').attr('data-id-rect')].local_rectangles[$(this).attr('data-id-sub-rect')].width = $(this).outerWidth();
-        arrayContainerOBJ[$('.editable').attr('data-id-rect')].local_rectangles[$(this).attr('data-id-sub-rect')].height = $(this).outerHeight();
-        arrayContainerOBJ[$('.editable').attr('data-id-rect')].local_rectangles[$(this).attr('data-id-sub-rect')].pos_y = $(this).position().top;
-        arrayContainerOBJ[$('.editable').attr('data-id-rect')].local_rectangles[$(this).attr('data-id-sub-rect')].pos_x = $(this).position().left;
+        arrayContainerOBJ[$('.editable').attr('data-id')].local_rectangles[$(this).attr('data-id-sub-rect')].width = $(this).outerWidth();
+        arrayContainerOBJ[$('.editable').attr('data-id')].local_rectangles[$(this).attr('data-id-sub-rect')].height = $(this).outerHeight();
+        arrayContainerOBJ[$('.editable').attr('data-id')].local_rectangles[$(this).attr('data-id-sub-rect')].pos_y = $(this).position().top;
+        arrayContainerOBJ[$('.editable').attr('data-id')].local_rectangles[$(this).attr('data-id-sub-rect')].pos_x = $(this).position().left;
 
     });
     $('.toolbar-edit').hide();
