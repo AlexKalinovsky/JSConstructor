@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PlanConstructor v1.2.7</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="/favicon.ico"> -->
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- STYLES -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/media.css" rel="stylesheet">
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body>
+
+<div class="toolbar center">
+	<div class="toolbar-blocks" id="Toolbar1" style="display: block;">
+		<h1>Общий план</h1>
+        <div class="block-list">
+            
+        </div>
+
+       <!--  <button name="add" id="toolbar-main-add">Добавить блок</button>  -->
+		<button name="save" id="toolbar-main-save">Сохранить изменения</button> 
+	</div>
+	<div class="toolbar-edit" id="Toolbar2" style="display: none;">
+		<h1>Форма стенда</h1>
+        <div class="edit-list">
+           
+        </div>
+        <button name="add" id="toolbar-edit-add">Добавить блок</button> 
+        <button name="save" id="toolbar-edit-save">Сохранить изменения</button> 
+    </div>
+		<!-- Тут будут генерироваться элементы управления для редактирования объекта --> 
+</div>
+
+<section id="main" class="main">
+	<div class="center">
+        <div class="main-screen">
+            <div class="helper"></div>
+        </div>
+        <img src="img/Floorplan2018.jpg" alt="">
+		
+	</div>
+</section>
+
+
+
+<!-- jQuery -->
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- SCRIPTS -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</body>
+</html>
