@@ -149,6 +149,8 @@ h1 {
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
             justify-content: space-between; }
+    .block-list__item input {
+      width: 50px; }
 
 .edit-list {
   width: 100%;

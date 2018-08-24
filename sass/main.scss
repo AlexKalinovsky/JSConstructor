@@ -115,6 +115,9 @@ h1 {
   &__item{
     display: flex;
     justify-content: space-between;
+    input{
+      width: 50px;
+    }
   }
 }
 .edit-list{

@@ -6,7 +6,7 @@ var arrayContainerOBJ = [];
 
 $.ajax({
                         type: "GET", 
-                        url: "bd",                  
+                        url: "../bd",                  
                                             
                         success: function(data) {
                         console.log("GetData from database- success"); 
@@ -144,14 +144,7 @@ function drowSubRectangle() {
 function drowMainList() {
     $('.block-list').empty();
     $.each(arrayContainerOBJ, function(key, value) {
-        $('.block-list').append('<div data-main-id="' + key  + '"  class="block-list__item"><div class="block-list__name">' + value.name + '</div><input type="number" name="block-list__width" value="' + value.width + '"><input type="number" name="block-list__height" value="' + value.height + '"><button data-id="' + key + '"  class="block-list__edit">Редактировать</button></div>');
-    });
-    $('[name=block-list__width]').on('input', function() {
-        console.log($(this));
-        $('.obj_container[data-id=' + $(this).parent().attr('data-main-id') + ']').css('width', this.value);
-    });
-    $('[name=block-list__height]').on('input', function() {
-         $('.obj_container[data-id=' + $(this).parent().attr('data-main-id') + ']').css('height', this.value);
+        $('.block-list').append('<div class="block-list__item"><div class="block-list__name">' + value.name + '</div><button data-id="' + key + '"  class="block-list__edit">Редактировать</button></div>');
     });
     buttonEdit(); //привязка обработчика к отрисовке
 }
@@ -161,9 +154,10 @@ function drowMainList() {
 function drowEditList(id) {
     // $('.edit-list').empty();
     arrayContainerOBJ[id].local_rectangles.forEach(function(elem) {
+
         // console.log(elem.div_id);
         if ($('.edit-list__item[data-edit-id=' + elem.div_id + ']').length <= 0) {
-            $('.edit-list').append('<div data-edit-id="' + elem.div_id + '" class="edit-list__item"><div class="edit-list__name"> блок' + elem.div_id + '</div><input type="number" name="edit-list__width" value="' + elem.width + '"><input type="number" name="edit-list__height" value="' + elem.height + '"><button class="edit-list__delite">X</button>');
+            $('.edit-list').append('<div data-edit-id="' + elem.div_id + '" class="edit-list__item"><div class="block-list__name"> блок' + elem.div_id + '</div><input type="number" name="edit-list__width" value="' + elem.width + '"><input type="number" name="edit-list__height" value="' + elem.height + '"><button class="edit-list__delite">X</button>');
         }
     });
     $('[name=edit-list__width]').on('input', function() {
@@ -189,9 +183,9 @@ function buttonEdit() {
     $('.block-list__edit').on("click", Editor);
 
 }
-function Editor() {
-    if ($('.editable').length < 1) {
-        $('.toolbar-blocks').hide();
+function Editor(){
+    $('.toolbar-blocks').hide();
+    console.log(this);
         $('.toolbar-edit').show();
         drowEditList($(this).attr('data-id'));
         $('#recObject-' + $(this).attr('data-id')).addClass('editable');
@@ -201,7 +195,6 @@ function Editor() {
         $('.local_rectangle').draggable({
             grid: [GreedStep, GreedStep]
         });
-    }
 }
 //кнопка Добавить блок в тулбаре редактирования внутренних блоков
 $('#toolbar-edit-add').on("click", function() {
@@ -244,8 +237,6 @@ $("#toolbar-main-save").on("click", function(e) {
             if (value.div_id == item.id) {
                 arrayContainerOBJ[key]['pos_x'] = $(item).offset().left;
                 arrayContainerOBJ[key]['pos_y'] = $(item).offset().top;
-                arrayContainerOBJ[key]['width'] = $(item).outerWidth();
-                arrayContainerOBJ[key]['height'] = $(item).outerHeight();
             }
         });
 
